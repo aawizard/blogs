@@ -38,8 +38,8 @@ const BlogDetails = () => {
     .doc(id)
     .delete().then(
       ()=>{
-        
-   history.push('/');
+        history.go(0)
+   
       }
     )
     .catch((err) => {
@@ -50,6 +50,7 @@ const BlogDetails = () => {
   
  const handleClick = () => {
    deleteBlog();
+   history.push('/');
  }
 
   return (
