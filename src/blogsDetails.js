@@ -35,14 +35,10 @@ const BlogDetails = () => {
   
   const deleteBlog= async()=>{
     setIsDeleting(true);
+    history.push('/');
     await db
     .doc(id)
     .delete()
-    .then(() => {
-      setIsDeleting(false);
-      history.push('/');
-      
-    }) 
     .catch((err) => {
       setIsDeleting(false);
       console.error(err);
