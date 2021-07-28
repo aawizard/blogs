@@ -6,7 +6,6 @@ const BlogDetails = () => {
   const [blog, setblog] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-  const [isDeleting, setIsDeleting] = useState(false);
   const history = useHistory();
   
   const getBlog=async()=> {
@@ -34,15 +33,19 @@ const BlogDetails = () => {
    }) 
   
   const deleteBlog= async()=>{
-    setIsDeleting(true);
-    history.push('/');
+    
     await db
     .doc(id)
-    .delete()
+    .delete().then(
+      ()=>{
+        
+   history.push('/');
+      }
+    )
     .catch((err) => {
-      setIsDeleting(false);
       console.error(err);
     });
+
   }
   
  const handleClick = () => {
@@ -59,8 +62,8 @@ const BlogDetails = () => {
           <h2>{ blog.title }</h2>
           <p>Written by { blog.author }</p>
           <div>{ blog.body }</div>
-          { !isDeleting && <button onClick={handleClick}>delete</button>}
-          { isDeleting && <button disabled>deleteing</button>}
+            <button onClick={handleClick}>delete</button>
+          
         </article>
       )}
     </div>
