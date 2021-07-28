@@ -1,3 +1,2 @@
-
-https://aawizard.github.io/blogs/
+https://b-l-o-g-s.herokuapp.com/
 
